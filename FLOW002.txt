@@ -1,0 +1,45 @@
+package abcd;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class FLOW002 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println(denom(1200));
+//		int n = sc.nextInt();
+//		for (int i = 0; i < n; i++) {
+//		}
+
+	}
+
+	static int fcount = Integer.MAX_VALUE;
+
+	public static int denom(int sum) {
+
+		if (sum == 0) {
+			return 0;
+		}
+		if (sum < 0) {
+			return -1;
+		}
+
+		int a = denom(sum - 1);
+
+		int b = denom(sum - 2);
+
+		int c = denom(sum - 5);
+
+		int d = denom(sum - 10);
+
+		int e = denom(sum - 50);
+
+		int f = denom(sum - 100);
+
+		return Math.min(a, Math.min(b, Math.min(c, Math.min(d, Math.min(e, f))))) + 1;
+
+	}
+}
