@@ -1,0 +1,67 @@
+package abcd;
+
+import java.util.Scanner;
+import java.util.Stack;
+
+public class java_stack_parenthesis {
+
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+		String inp = scn.next();
+		Stack ip = new Stack();
+		for (int i = inp.length() - 1; i >= 0; i--) {
+			char c = inp.charAt(i);
+			ip.push(c);
+		}
+		System.out.println(par(ip));
+	}
+
+	public static boolean par(Stack<Character> ab) {
+		Stack a = new Stack();
+		Stack b = new Stack();
+		Stack c = new Stack();
+		while (!ab.isEmpty()) {
+			char ch = ab.pop();
+			if (ch == '(' || ch == ')') {
+				if (a.isEmpty()) {
+					a.push(ch);
+				} else {
+					char m = (char) a.peek();
+					if ((m == '(' && ch == '(') || (m == ')' && ch == '(') || (m == ')' && ch == ')')) {
+						a.push(ch);
+					} else {
+						a.pop();
+					}
+				}
+			} else if (ch == '[' || ch == ']') {
+				if (b.isEmpty()) {
+					b.push(ch);
+				} else {
+					char m = (char) b.peek();
+					if ((m == '[' && ch == '[') || (m == ']' && ch == '[') || (m == ']' && ch == ']')) {
+						b.push(ch);
+					} else {
+						b.pop();
+					}
+				}
+			} else if (ch == '{' || ch == '}') {
+				if (c.isEmpty()) {
+					c.push(ch);
+				} else {
+					char m = (char) c.peek();
+					if ((m == '{' && ch == '{') || (m == '}' && ch == '{') || (m == '}' && ch == '}')) {
+						c.push(ch);
+					} else {
+						c.pop();
+					}
+				}
+			}
+		}
+		if (a.isEmpty() && b.isEmpty() && c.isEmpty()) {
+			return true;
+		}
+
+		return false;
+
+	}
+}
