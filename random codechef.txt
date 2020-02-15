@@ -1,0 +1,73 @@
+package abcd;
+
+import java.util.Scanner;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class FLOW006 {
+//	ye function agar sunday hua to 0 dega aur monday hua to 1 and so on...saturday hua to 6
+	static int dayofweek(int d, int m, int y) {
+		int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+		y -= (m < 3) ? 1 : 0;
+		return (y + y / 4 - y / 100 + y / 400 + t[m - 1] + d) % 7;
+	}
+	
+//ye function leap year btayega 
+	static boolean isLeap(int year) {
+		if (year % 4 == 0) {
+			if (year % 100 == 0) {
+				if (year % 400 == 0) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+//		int day = dayofweek(12, 2, 2020);
+
+		int n = sc.nextInt();
+		for (int i = 0; i < n; i++) {
+			int s_month = sc.nextInt();
+			int s_year = sc.nextInt();
+			int e_month = sc.nextInt();
+			int e_year = sc.nextInt();
+			int count = 0;
+
+			if ((s_month == 1 || s_month == 2) && s_month != e_month) {
+				int day = dayofweek(1, 2, s_year);
+				if ((day == 0 && !isLeap(s_year)) || day == 6) {
+					count = count + 1;
+				}
+			}
+			s_year = s_year + 1;
+			while (s_year < e_year) {
+				int day = dayofweek(1, 2, s_year);
+				if ((day == 0 && !isLeap(s_year)) || day == 6) {
+					count = count + 1;
+				}
+
+				s_year = s_year + 1;
+			}
+
+			if (e_month >= 2) {
+				int day = dayofweek(1, 2, e_year);
+				if ((day == 0 && !isLeap(s_year)) || day == 6) {
+					count = count + 1;
+				}
+
+			}
+			System.out.println(count);
+
+		}
+	}
+
+}
