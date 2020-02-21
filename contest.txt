@@ -1,0 +1,55 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class arro {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+		int d = sc.nextInt();
+		int[] arr = new int[n];
+		for (int i = 0; i < n; i++) {
+			arr[i] = sc.nextInt();
+		}
+		int[] arr1 = new int[n];
+
+		for (int m = 0; m < n - 1; m++) {
+			int count = 0;
+			for (int k = m + 1; k < n; k++) {
+				if ((arr[m] - arr[k]) % d == 0) {
+					count = count + 1;
+				}
+
+			}
+			arr1[m] = count;
+
+		}
+
+		int[] temp = new int[n];
+
+		for (int p = 0; p < n; p++) {
+			temp[p] = arr1[p];
+		}
+
+		Arrays.sort(temp);
+		int max = temp[n - 1];
+
+		int index = 0;
+		for (int l = 0; l < n; l++) {
+			if (arr1[l] == max) {
+				index = l;
+				break;
+			}
+		}
+		System.out.println(max + 1);
+		System.out.println(arr[index]);
+		for (int o = index + 1; o <= n - 1; o++) {
+			if ((arr[index] - arr[o]) % d == 0) {
+				System.out.println(arr[o]);
+			}
+		}
+	}
+
+}
