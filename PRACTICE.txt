@@ -1,0 +1,36 @@
+import java.util.Queue;
+import java.util.Stack;
+
+public class practice {
+	public static void main(String[] args) {
+		base bo = new derived1();
+		System.out.println(bo.run());
+	}
+
+}
+
+class base {
+	private int fun() {
+		return 0;
+	}
+
+	public int run() {
+		return 3;
+	}
+}
+
+class derived extends base {
+	private int fun() {
+		return 1;
+	}
+
+	public int run() {
+		return fun();
+	}
+}
+
+class derived1 extends derived {
+	public int fun() {
+		return 2;
+	}
+}
