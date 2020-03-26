@@ -1,0 +1,45 @@
+
+import java.util.*;
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+    Scanner s = new Scanner(System.in);
+    int[][] arr=new int[10][10];
+    int cr=s.nextInt();
+    int cc=s.nextInt();
+    int total=s.nextInt();
+    knight(arr,cr-1,cc-1,0,total);
+    System.out.println(tcount);
+    }
+    static int[] pathrow = { 2, 1, -1, -2, -2, -1, 1, 2 };
+
+	static int[] pathcol = { 1, 2, 2, 1, -1, -2, -2, -1 };
+    static int tcount=0;
+    public static void knight(int[][] arr,int cr,int cc,int count,int total){
+        if(count==total){
+            tcount=tcount+1;
+            return;
+        }
+       else{
+        for(int i=0;i<pathrow.length;i++){
+            int ncr=cr+pathrow[i];
+            int ncc=cc+pathcol[i];
+            if(isvalid(arr,ncr,ncc)){
+                    arr[ncr][ncc]=1;
+            
+                knight(arr,ncr,ncc,count+1,total);
+                    
+            }
+        }
+        }
+    
+    }
+
+    public static boolean isvalid(int[][] arr, int cr, int cc) {
+
+		if ((cr >= 0) && (cr < arr.length) && (cc >= 0) && (cc < arr[0].length) && (arr[cr][cc] == 0)) {
+			return true;
+		}
+		return false;
+
+	}
+}
